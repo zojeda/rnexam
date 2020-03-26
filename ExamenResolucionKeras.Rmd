@@ -3,8 +3,8 @@ title: "Examen Resuelto"
 author: "Ojeda, Zacarías F."
 date: "23/03/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -235,7 +235,7 @@ library(grid)        # plot together
 # plotting the matrix
 cm_d_p <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, fill = Freq))+
   geom_tile() +
-  geom_text(aes(label = paste("",Freq," -- ",Perc,"%")), color = 'red', size = 2) +
+  geom_text(aes(label = paste("",Freq," - ",Perc,"%")), color = 'red', size = 2) +
   theme_light() +
   guides(fill=FALSE) 
 
