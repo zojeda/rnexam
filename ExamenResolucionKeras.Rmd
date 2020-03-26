@@ -3,8 +3,8 @@ title: "Examen Resuelto"
 author: "Ojeda, Zacarías F."
 date: "23/03/2020"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -235,7 +235,7 @@ library(grid)        # plot together
 # plotting the matrix
 cm_d_p <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, fill = Freq))+
   geom_tile() +
-  geom_text(aes(label = paste("",Freq,",",Perc,"%")), color = 'red', size = 2) +
+  geom_text(aes(label = paste("",Freq," -- ",Perc,"%")), color = 'red', size = 2) +
   theme_light() +
   guides(fill=FALSE) 
 
@@ -280,7 +280,9 @@ winequalityTest <- read_csv("data/whinequality_test.csv")
 ```
 
 ```{r}
-prediccionTest <- modeloFinal %>% predict(x_test) %>% round()
+winequalityTestEscalado = (winequalityTest - meanWineQuality) / sdWineQuality
+x_test_escalado =  array_reshape(unlist(winequalityTestEscalado), c(nrow(winequalityTestEscalado), 12))
+prediccionTest <- modeloFinal %>% predict(x_test_escalado) %>% round()
 data.frame(prediccion = prediccionTest) %>% write_csv("prediccion_test.csv")
 ```
 
