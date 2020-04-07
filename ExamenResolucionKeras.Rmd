@@ -280,7 +280,7 @@ winequalityTest <- read_csv("data/whinequality_test.csv")
 ```
 
 ```{r}
-winequalityTestEscalado = (winequalityTest - meanWineQuality) / sdWineQuality
+winequalityTestEscalado = winequalityTest %>% scale
 x_test_escalado =  array_reshape(unlist(winequalityTestEscalado), c(nrow(winequalityTestEscalado), 12))
 prediccionTest <- modeloFinal %>% predict(x_test_escalado) %>% round()
 data.frame(prediccion = prediccionTest) %>% write_csv("prediccion_test.csv")
